@@ -1,18 +1,16 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace ClientBuilder.KucoinBotClient.Services
+﻿namespace ClientBuilder.KucoinBotClient.Services
 {
     public class KucoinClientBuilderService : IKucoinClientBuilderService
     {
         private readonly IUserCredentials _userCredentials;
-        private readonly ApiRestClientOptions _options;
+        private readonly IApiRestClientOptions _restClientOptions;
 
         public KucoinClientBuilderService(
-            IOptions<ApiRestClientOptions> options,
+            IApiRestClientOptions restClientOptions,
             IUserCredentials userCredentials)
         {
             _userCredentials = userCredentials;
-            _options = options.Value;
+            _restClientOptions = restClientOptions;
         }
 
         public IKucoinClient GetClient()
@@ -24,12 +22,12 @@ namespace ClientBuilder.KucoinBotClient.Services
                 : new KucoinClientOptions()
                 {
                     ApiCredentials = _userCredentials.SpotCredentials,
-                    SpotApiOptions = _options.GetKucoinRestApiClientOptions(_userCredentials.SpotCredentials),
-                    FuturesApiOptions = _options.GetKucoinRestApiClientOptions(_userCredentials.FutureCredentials),
-                    LogLevel = _options.LogLevel.GetEnum<LogLevel>(),
-                    OutputOriginalData = _options.OutputOriginalData,
-                    Proxy = _options.ApiProxy?.GetApiProxy(),
-                    RequestTimeout = _options.RequestSecondsTimeout.GetSecondsInterval()
+                    SpotApiOptions = _restClientOptions.GetKucoinRestApiClientOptions(_userCredentials.SpotCredentials),
+                    FuturesApiOptions = _restClientOptions.GetKucoinRestApiClientOptions(_userCredentials.FutureCredentials),
+                    LogLevel = _restClientOptions.LogLevel.GetEnum<LogLevel>(),
+                    OutputOriginalData = _restClientOptions.OutputOriginalData,
+                    Proxy = _restClientOptions.ApiProxy?.GetApiProxy(),
+                    RequestTimeout = _restClientOptions.RequestSecondsTimeout.GetSecondsInterval()
             };
     }
 }

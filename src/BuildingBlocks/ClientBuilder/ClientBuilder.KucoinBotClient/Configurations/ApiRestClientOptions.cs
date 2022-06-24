@@ -1,6 +1,6 @@
 ﻿namespace ClientBuilder.KucoinBotClient.Configurations
 {
-    public class ApiRestClientOptions : BaseApiClientOptions
+    public class ApiRestClientOptions : BaseApiClientOptions, IApiRestClientOptions
     {
         public bool AutoTimestamp { get; set; }
         public int RateLimitingBehaviour { get; set; }

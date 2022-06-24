@@ -1,18 +1,16 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace ClientBuilder.KucoinBotClient.Services
+﻿namespace ClientBuilder.KucoinBotClient.Services
 {
     public class KucoinSocketClientBuilderService : IKucoinSocketClientBuilderService
     {
         private readonly IUserCredentials _userCredentials;
-        private readonly ApiSocketClientOptions _options;
+        private readonly IApiSocketClientOptions _socketClientOptions;
 
         public KucoinSocketClientBuilderService(
             IUserCredentials userCredentials,
-            IOptions<ApiSocketClientOptions> options)
+            IApiSocketClientOptions socketClientOptions)
         {
             _userCredentials = userCredentials;
-            _options = options.Value;
+            _socketClientOptions = socketClientOptions;
         }
 
         public IKucoinSocketClient GetClient()
@@ -24,20 +22,20 @@ namespace ClientBuilder.KucoinBotClient.Services
                 : new KucoinSocketClientOptions()
                 {
                     ApiCredentials = _userCredentials.SpotCredentials,
-                    SpotStreamsOptions = _options.GetKucoinSocketApiClientOptions(_userCredentials.SpotCredentials),
-                    FuturesStreamsOptions = _options.GetKucoinSocketApiClientOptions(_userCredentials.FutureCredentials),
-                    AutoReconnect = _options.AutoReconnect,
-                    LogLevel = _options.LogLevel.GetEnum<LogLevel>(),
-                    MaxConcurrentResubscriptionsPerSocket = _options.MaxConcurrentResubscriptionsPerSocket,
-                    MaxReconnectTries = _options.MaxReconnectTries,
-                    MaxResubscribeTries = _options.MaxResubscribeTries,
-                    MaxSocketConnections = _options.MaxSocketConnections,
-                    OutputOriginalData = _options.OutputOriginalData,
-                    ReconnectInterval = _options.ReconnectSecondsInterval.GetSecondsInterval(),
-                    SocketNoDataTimeout = _options.SocketNoDataSecondsTimeout.GetSecondsInterval(),
-                    SocketResponseTimeout = _options.SocketResponseSecondsTimeout.GetSecondsInterval(),
-                    SocketSubscriptionsCombineTarget = _options.SocketSubscriptionsCombineTarget,
-                    Proxy = _options.ApiProxy?.GetApiProxy()
+                    SpotStreamsOptions = _socketClientOptions.GetKucoinSocketApiClientOptions(_userCredentials.SpotCredentials),
+                    FuturesStreamsOptions = _socketClientOptions.GetKucoinSocketApiClientOptions(_userCredentials.FutureCredentials),
+                    AutoReconnect = _socketClientOptions.AutoReconnect,
+                    LogLevel = _socketClientOptions.LogLevel.GetEnum<LogLevel>(),
+                    MaxConcurrentResubscriptionsPerSocket = _socketClientOptions.MaxConcurrentResubscriptionsPerSocket,
+                    MaxReconnectTries = _socketClientOptions.MaxReconnectTries,
+                    MaxResubscribeTries = _socketClientOptions.MaxResubscribeTries,
+                    MaxSocketConnections = _socketClientOptions.MaxSocketConnections,
+                    OutputOriginalData = _socketClientOptions.OutputOriginalData,
+                    ReconnectInterval = _socketClientOptions.ReconnectSecondsInterval.GetSecondsInterval(),
+                    SocketNoDataTimeout = _socketClientOptions.SocketNoDataSecondsTimeout.GetSecondsInterval(),
+                    SocketResponseTimeout = _socketClientOptions.SocketResponseSecondsTimeout.GetSecondsInterval(),
+                    SocketSubscriptionsCombineTarget = _socketClientOptions.SocketSubscriptionsCombineTarget,
+                    Proxy = _socketClientOptions.ApiProxy?.GetApiProxy()
                 };
     }
 }

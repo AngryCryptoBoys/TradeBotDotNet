@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace ClientBuilder.KucoinBotClient.Models
+﻿namespace ClientBuilder.KucoinBotClient.Models
 {
     public class UserCredentials : IUserCredentials
     {
@@ -8,18 +6,18 @@ namespace ClientBuilder.KucoinBotClient.Models
         public KucoinApiCredentials? FutureCredentials { get; }
 
         public UserCredentials(
-            IOptions<SpotCredentials> spotCredentials,
-            IOptions<FutureCredentials> futureCredentials)
+            IApiCredentials spotCredentials,
+            IApiCredentials futureCredentials)
         {
-            SpotCredentials = GetKucoinApiCredentials(spotCredentials.Value);
-            FutureCredentials = GetKucoinApiCredentials(futureCredentials.Value);
+            SpotCredentials = GetKucoinApiCredentials(spotCredentials);
+            FutureCredentials = GetKucoinApiCredentials(futureCredentials);
         }
 
         public bool IsEmpty()
             => this.SpotCredentials is null 
             && this.FutureCredentials is null;
 
-        private KucoinApiCredentials? GetKucoinApiCredentials(BaseCredentials credentials)
+        private KucoinApiCredentials? GetKucoinApiCredentials(IApiCredentials credentials)
         {
             return credentials is null || credentials.IsEmpty() 
                 ? null

@@ -1,6 +1,6 @@
 ﻿namespace ClientBuilder.KucoinBotClient.Configurations
 {
-    public class ApiSocketClientOptions : BaseApiClientOptions
+    public class ApiSocketClientOptions : BaseApiClientOptions, IApiSocketClientOptions
     {
         public bool AutoReconnect { get; set; }
         public int MaxConcurrentResubscriptionsPerSocket { get; set; }
