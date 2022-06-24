@@ -1,6 +1,6 @@
 ﻿namespace ClientBuilder.KucoinBotClient.Configurations
 {
-    public class ApiProxyConfiguration : IApiProxyConfiguration
+    public class ApiProxyConfiguration
     {
         public string Host { get; set; }
         public int Port { get; set; }

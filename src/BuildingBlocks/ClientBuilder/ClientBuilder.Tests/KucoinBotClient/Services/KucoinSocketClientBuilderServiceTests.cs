@@ -1,33 +1,34 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using Kucoin.Net.Objects;
 using ClientBuilder.KucoinBotClient.Models;
 using ClientBuilder.KucoinBotClient.Services;
-using ClientBuilder.KucoinBotClient.Interfaces;
 using ClientBuilder.KucoinBotClient.Configurations;
+using Microsoft.Extensions.Options;
 
 namespace ClientBuilder.Tests.KucoinBotClient.Services
 {
     public class KucoinSocketClientBuilderServiceTests
     {
-        private readonly IApiCredentials _spotCredentials;
-        private readonly IApiCredentials _futureCredentials;
-        private readonly IApiSocketClientOptions _apiSocketClientOptions;
+        private readonly Mock<IOptions<SpotApiCredentials>> _mockSpotCredentials;
+        private readonly Mock<IOptions<FutureApiCredentials>> _mockFutureCredentials;
+        private readonly Mock<IOptions<ApiSocketClientOptions>> _mockApiSocketClientOptions;
 
         public KucoinSocketClientBuilderServiceTests()
         {
-            _spotCredentials = new ApiCredentials()
+            var spotCredentials = new ApiCredentials()
             {
                 ApiKey = "spotCredentials",
                 ApiSecret = "spotCredentials",
                 ApiPassPhrase = "spotCredentials"
             };
-            _futureCredentials = new ApiCredentials()
+            var futureCredentials = new ApiCredentials()
             {
                 ApiKey = "spotCredentials",
                 ApiSecret = "spotCredentials",
                 ApiPassPhrase = "spotCredentials"
             };
-            _apiSocketClientOptions = new ApiSocketClientOptions()
+            var apiSocketClientOptions = new ApiSocketClientOptions()
             {
                 AutoReconnect = default,
                 MaxConcurrentResubscriptionsPerSocket = default,
@@ -49,19 +50,27 @@ namespace ClientBuilder.Tests.KucoinBotClient.Services
                     Password = default
                 }
             };
+
+            _mockSpotCredentials = new Mock<IOptions<SpotApiCredentials>>();
+            _mockFutureCredentials = new Mock<IOptions<FutureApiCredentials>>();
+            _mockApiSocketClientOptions = new Mock<IOptions<ApiSocketClientOptions>>();
+            _mockApiSocketClientOptions.Setup(_ => _.Value).Returns(apiSocketClientOptions);
         }
 
         [Fact]
         public void GetClientOptions_InsertEmptyCredentials_ReturnDefaultKucoinSocketClientOptions()
         {
             //Arrange
+            _mockSpotCredentials.Setup(_ => _.Value).Returns(default(SpotApiCredentials));
+            _mockFutureCredentials.Setup(_ => _.Value).Returns(default(FutureApiCredentials));
+
             var userCredentials = new UserCredentials(
-                spotCredentials: default(ApiCredentials),
-                futureCredentials: default(ApiCredentials));
+                spotCredentials: _mockSpotCredentials.Object,
+                futureCredentials: _mockFutureCredentials.Object);
 
             var service = new KucoinSocketClientBuilderService(
                 userCredentials: userCredentials,
-                socketClientOptions: _apiSocketClientOptions);
+                socketClientOptions: _mockApiSocketClientOptions.Object);
 
             //Act
             var actualClient = service.GetClientOptions();

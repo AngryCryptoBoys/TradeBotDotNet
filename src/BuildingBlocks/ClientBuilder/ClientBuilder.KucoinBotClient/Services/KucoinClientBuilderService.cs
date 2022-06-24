@@ -3,14 +3,14 @@
     public class KucoinClientBuilderService : IKucoinClientBuilderService
     {
         private readonly IUserCredentials _userCredentials;
-        private readonly IApiRestClientOptions _restClientOptions;
+        private readonly ApiRestClientOptions _restClientOptions;
 
         public KucoinClientBuilderService(
-            IApiRestClientOptions restClientOptions,
+            IOptions<ApiRestClientOptions> restClientOptions,
             IUserCredentials userCredentials)
         {
             _userCredentials = userCredentials;
-            _restClientOptions = restClientOptions;
+            _restClientOptions = restClientOptions.Value;
         }
 
         public IKucoinClient GetClient()
@@ -28,6 +28,6 @@
                     OutputOriginalData = _restClientOptions.OutputOriginalData,
                     Proxy = _restClientOptions.ApiProxy?.GetApiProxy(),
                     RequestTimeout = _restClientOptions.RequestSecondsTimeout.GetSecondsInterval()
-            };
+                };
     }
 }

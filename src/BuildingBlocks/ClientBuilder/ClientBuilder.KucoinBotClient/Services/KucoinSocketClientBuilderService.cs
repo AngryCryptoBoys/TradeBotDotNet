@@ -3,14 +3,14 @@
     public class KucoinSocketClientBuilderService : IKucoinSocketClientBuilderService
     {
         private readonly IUserCredentials _userCredentials;
-        private readonly IApiSocketClientOptions _socketClientOptions;
+        private readonly ApiSocketClientOptions _socketClientOptions;
 
         public KucoinSocketClientBuilderService(
             IUserCredentials userCredentials,
-            IApiSocketClientOptions socketClientOptions)
+            IOptions<ApiSocketClientOptions> socketClientOptions)
         {
             _userCredentials = userCredentials;
-            _socketClientOptions = socketClientOptions;
+            _socketClientOptions = socketClientOptions.Value;
         }
 
         public IKucoinSocketClient GetClient()

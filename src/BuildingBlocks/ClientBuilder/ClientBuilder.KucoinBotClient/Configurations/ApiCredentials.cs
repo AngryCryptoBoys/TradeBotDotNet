@@ -1,6 +1,6 @@
 ﻿namespace ClientBuilder.KucoinBotClient.Configurations
 {
-    public class ApiCredentials : IApiCredentials
+    public class ApiCredentials
     {
         public string ApiKey { get; set; }
         public string ApiSecret { get; set; }

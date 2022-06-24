@@ -1,35 +1,37 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using Kucoin.Net.Objects;
 using ClientBuilder.KucoinBotClient.Models;
 using ClientBuilder.KucoinBotClient.Services;
-using ClientBuilder.KucoinBotClient.Interfaces;
 using ClientBuilder.KucoinBotClient.Configurations;
+using Microsoft.Extensions.Options;
+
 
 namespace ClientBuilder.Tests.KucoinBotClient.Services
 {
     public class KucoinClientBuilderServiceTests
     {
-        private readonly IApiCredentials _spotCredentials;
-        private readonly IApiCredentials _futureCredentials;
-        private readonly IApiRestClientOptions _apiClientOptions;
+        private readonly Mock<IOptions<SpotApiCredentials>> _mockSpotCredentials;
+        private readonly Mock<IOptions<FutureApiCredentials>> _mockFutureCredentials;
+        private readonly Mock<IOptions<ApiRestClientOptions>> _mockApiClientOptions;
 
         public KucoinClientBuilderServiceTests()
         {
-            _spotCredentials = new ApiCredentials()
+            var spotCredentials = new ApiCredentials()
             {
                 ApiKey = "ApiKey",
                 ApiSecret = "ApiSecret",
                 ApiPassPhrase = "ApiPassPhrase"
             };
 
-            _futureCredentials = new ApiCredentials()
+            var futureCredentials = new ApiCredentials()
             {
                 ApiKey = "ApiKey",
                 ApiSecret = "ApiSecret",
                 ApiPassPhrase = "ApiPassPhrase"
             };
 
-            _apiClientOptions = new ApiRestClientOptions()
+            var apiClientOptions = new ApiRestClientOptions()
             {
                 AutoTimestamp = default,
                 RateLimitingBehaviour = 30,
@@ -40,19 +42,27 @@ namespace ClientBuilder.Tests.KucoinBotClient.Services
                 BaseAddress = null,
                 ApiProxy = null
             };
+
+            _mockSpotCredentials = new Mock<IOptions<SpotApiCredentials>>();
+            _mockFutureCredentials = new Mock<IOptions<FutureApiCredentials>>();
+            _mockApiClientOptions = new Mock<IOptions<ApiRestClientOptions>>();
+            _mockApiClientOptions.Setup(_ => _.Value).Returns(apiClientOptions);
         }
 
         [Fact]
         public void GetClientOptions_InsertEmptyCredentials_ReturnDefaultKucoinSocketClientOptions()
         {
             //Arrange
+            _mockSpotCredentials.Setup(_ => _.Value).Returns(default(SpotApiCredentials));
+            _mockFutureCredentials.Setup(_ => _.Value).Returns(default(FutureApiCredentials));
+
             var userCredentials = new UserCredentials(
-                spotCredentials: default(ApiCredentials),
-                futureCredentials: default(ApiCredentials));
+                spotCredentials: _mockSpotCredentials.Object,
+                futureCredentials: _mockFutureCredentials.Object);
 
             var service = new KucoinClientBuilderService(
                 userCredentials: userCredentials,
-                restClientOptions: _apiClientOptions);
+                restClientOptions: _mockApiClientOptions.Object);
 
             //Act
             var actualClient = service.GetClientOptions();

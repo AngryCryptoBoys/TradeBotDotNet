@@ -2,7 +2,10 @@
 global using Kucoin.Net.Clients;
 global using Kucoin.Net.Interfaces.Clients;
 global using CryptoExchange.Net.Objects;
+global using Microsoft.Extensions.Options;
 global using Microsoft.Extensions.Logging;
+global using ClientBuilder.KucoinBotClient.Models;
+global using ClientBuilder.KucoinBotClient.Services;
 global using ClientBuilder.KucoinBotClient.Extensions;
 global using ClientBuilder.KucoinBotClient.Interfaces;
 global using ClientBuilder.KucoinBotClient.Configurations;

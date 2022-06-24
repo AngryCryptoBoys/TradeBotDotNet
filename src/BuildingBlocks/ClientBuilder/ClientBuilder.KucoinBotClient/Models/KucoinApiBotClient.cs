@@ -1,11 +1,11 @@
 ﻿namespace ClientBuilder.KucoinBotClient.Models
 {
-    public class KucoinBotClient : IKucoinBotClient
+    public class KucoinApiBotClient : IKucoinApiBotClient
     {
         public IKucoinClient RestClient { get; set; }
         public IKucoinSocketClient SocketClient { get; set; }
 
-        public KucoinBotClient(
+        public KucoinApiBotClient(
             IKucoinClientBuilderService clientBuilderService,
             IKucoinSocketClientBuilderService socketClientBuilderService)
         {
