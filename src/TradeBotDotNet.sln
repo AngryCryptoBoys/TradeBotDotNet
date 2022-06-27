@@ -11,9 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2BA67850-E1CA-4612-9202-C0A4B12ACE22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.FunctionalTests", "Tests\Application.FunctionalTests\Application.FunctionalTests.csproj", "{B32D0252-5B68-4E05-AE82-3936BC0A05A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.FunctionalTests", "Tests\Application.FunctionalTests\Application.FunctionalTests.csproj", "{B32D0252-5B68-4E05-AE82-3936BC0A05A1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientBuilder", "ClientBuilder", "{C02D3F7A-8FF1-43A5-B127-C572FDA8D67E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{45CD8E86-359D-4669-8FC6-ABA6DE593C1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientBuilder.KucoinBotClient", "BuildingBlocks\ClientBuilder\ClientBuilder.KucoinBotClient\ClientBuilder.KucoinBotClient.csproj", "{45BCC972-E199-4356-9D0F-055F99682909}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientBuilder.Tests", "BuildingBlocks\ClientBuilder\ClientBuilder.Tests\ClientBuilder.Tests.csproj", "{FC43AC07-4BAE-441E-9994-69E0DCF80A41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +31,14 @@ Global
 		{B32D0252-5B68-4E05-AE82-3936BC0A05A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B32D0252-5B68-4E05-AE82-3936BC0A05A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B32D0252-5B68-4E05-AE82-3936BC0A05A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45BCC972-E199-4356-9D0F-055F99682909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45BCC972-E199-4356-9D0F-055F99682909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45BCC972-E199-4356-9D0F-055F99682909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45BCC972-E199-4356-9D0F-055F99682909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +48,9 @@ Global
 		{2BA67850-E1CA-4612-9202-C0A4B12ACE22} = {A86A0F9D-B8BB-437B-9FBF-B4F76246E3E1}
 		{B32D0252-5B68-4E05-AE82-3936BC0A05A1} = {9856E639-DBC9-449D-A8A1-6E0715D483BE}
 		{C02D3F7A-8FF1-43A5-B127-C572FDA8D67E} = {FE3E754A-1748-4E7F-AEC7-DD5B61365500}
+		{45CD8E86-359D-4669-8FC6-ABA6DE593C1E} = {C02D3F7A-8FF1-43A5-B127-C572FDA8D67E}
+		{45BCC972-E199-4356-9D0F-055F99682909} = {C02D3F7A-8FF1-43A5-B127-C572FDA8D67E}
+		{FC43AC07-4BAE-441E-9994-69E0DCF80A41} = {45CD8E86-359D-4669-8FC6-ABA6DE593C1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF818793-42A5-490E-BFBE-1D28FB82FEB3}
