@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A86A0F9D-B8B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{FE3E754A-1748-4E7F-AEC7-DD5B61365500}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2BA67850-E1CA-4612-9202-C0A4B12ACE22}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkerService", "WorkerService", "{2BA67850-E1CA-4612-9202-C0A4B12ACE22}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.FunctionalTests", "Tests\Application.FunctionalTests\Application.FunctionalTests.csproj", "{B32D0252-5B68-4E05-AE82-3936BC0A05A1}"
 EndProject
@@ -17,9 +17,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientBuilder", "ClientBuil
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{45CD8E86-359D-4669-8FC6-ABA6DE593C1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientBuilder.KucoinBotClient", "BuildingBlocks\ClientBuilder\ClientBuilder.KucoinBotClient\ClientBuilder.KucoinBotClient.csproj", "{45BCC972-E199-4356-9D0F-055F99682909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientBuilder.KucoinBotClient", "BuildingBlocks\ClientBuilder\ClientBuilder.KucoinBotClient\ClientBuilder.KucoinBotClient.csproj", "{45BCC972-E199-4356-9D0F-055F99682909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientBuilder.Tests", "BuildingBlocks\ClientBuilder\ClientBuilder.Tests\ClientBuilder.Tests.csproj", "{FC43AC07-4BAE-441E-9994-69E0DCF80A41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientBuilder.Tests", "BuildingBlocks\ClientBuilder\ClientBuilder.Tests\ClientBuilder.Tests.csproj", "{FC43AC07-4BAE-441E-9994-69E0DCF80A41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F2C5DBDB-93F5-47F6-B3D9-7FB49396BF43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A6AD4E8A-A01C-43E4-922E-9EB638DB64D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{0C22D39F-876B-496D-9887-9B5AA313519B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeBotDotNet.Worker", "WorkerService\Worker\TradeBotDotNet.Worker\TradeBotDotNet.Worker.csproj", "{E0EFCCDB-5EF5-4B01-9DE5-A6161D357D75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeBotDotNet.Infrastructure.ClientWrapper", "WorkerService\Infrastructure\TradeBotDotNet.Infrastructure.ClientWrapper\TradeBotDotNet.Infrastructure.ClientWrapper.csproj", "{99E899B6-FC2C-4298-8FF2-EE385CFB6157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeBotDotNet.Core.Application", "WorkerService\Core\TradeBotDotNet.Core.Application\TradeBotDotNet.Core.Application.csproj", "{1B7756F9-DA30-42FE-9876-E550770B1DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeBotDotNet.Core.Domain", "WorkerService\Core\TradeBotDotNet.Core.Domain\TradeBotDotNet.Core.Domain.csproj", "{15FCDD91-CA76-4933-B3F6-38AEF6EF895D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +53,22 @@ Global
 		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC43AC07-4BAE-441E-9994-69E0DCF80A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0EFCCDB-5EF5-4B01-9DE5-A6161D357D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0EFCCDB-5EF5-4B01-9DE5-A6161D357D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0EFCCDB-5EF5-4B01-9DE5-A6161D357D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0EFCCDB-5EF5-4B01-9DE5-A6161D357D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E899B6-FC2C-4298-8FF2-EE385CFB6157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E899B6-FC2C-4298-8FF2-EE385CFB6157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E899B6-FC2C-4298-8FF2-EE385CFB6157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E899B6-FC2C-4298-8FF2-EE385CFB6157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7756F9-DA30-42FE-9876-E550770B1DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7756F9-DA30-42FE-9876-E550770B1DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7756F9-DA30-42FE-9876-E550770B1DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7756F9-DA30-42FE-9876-E550770B1DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FCDD91-CA76-4933-B3F6-38AEF6EF895D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FCDD91-CA76-4933-B3F6-38AEF6EF895D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FCDD91-CA76-4933-B3F6-38AEF6EF895D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FCDD91-CA76-4933-B3F6-38AEF6EF895D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +81,13 @@ Global
 		{45CD8E86-359D-4669-8FC6-ABA6DE593C1E} = {C02D3F7A-8FF1-43A5-B127-C572FDA8D67E}
 		{45BCC972-E199-4356-9D0F-055F99682909} = {C02D3F7A-8FF1-43A5-B127-C572FDA8D67E}
 		{FC43AC07-4BAE-441E-9994-69E0DCF80A41} = {45CD8E86-359D-4669-8FC6-ABA6DE593C1E}
+		{F2C5DBDB-93F5-47F6-B3D9-7FB49396BF43} = {2BA67850-E1CA-4612-9202-C0A4B12ACE22}
+		{A6AD4E8A-A01C-43E4-922E-9EB638DB64D4} = {2BA67850-E1CA-4612-9202-C0A4B12ACE22}
+		{0C22D39F-876B-496D-9887-9B5AA313519B} = {2BA67850-E1CA-4612-9202-C0A4B12ACE22}
+		{E0EFCCDB-5EF5-4B01-9DE5-A6161D357D75} = {0C22D39F-876B-496D-9887-9B5AA313519B}
+		{99E899B6-FC2C-4298-8FF2-EE385CFB6157} = {A6AD4E8A-A01C-43E4-922E-9EB638DB64D4}
+		{1B7756F9-DA30-42FE-9876-E550770B1DFC} = {F2C5DBDB-93F5-47F6-B3D9-7FB49396BF43}
+		{15FCDD91-CA76-4933-B3F6-38AEF6EF895D} = {F2C5DBDB-93F5-47F6-B3D9-7FB49396BF43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF818793-42A5-490E-BFBE-1D28FB82FEB3}
