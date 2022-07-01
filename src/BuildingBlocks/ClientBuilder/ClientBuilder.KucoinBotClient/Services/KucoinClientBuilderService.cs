@@ -22,12 +22,12 @@
                 : new KucoinClientOptions()
                 {
                     ApiCredentials = _userCredentials.SpotCredentials,
-                    SpotApiOptions = _restClientOptions.GetKucoinRestApiClientOptions(_userCredentials.SpotCredentials),
-                    FuturesApiOptions = _restClientOptions.GetKucoinRestApiClientOptions(_userCredentials.FutureCredentials),
-                    LogLevel = _restClientOptions.LogLevel.GetEnum<LogLevel>(),
-                    OutputOriginalData = _restClientOptions.OutputOriginalData,
-                    Proxy = _restClientOptions.ApiProxy?.GetApiProxy(),
-                    RequestTimeout = _restClientOptions.RequestSecondsTimeout.GetSecondsInterval()
+                    //SpotApiOptions = _restClientOptions.GetKucoinRestApiClientOptions(_userCredentials.SpotCredentials),
+                    //FuturesApiOptions = _restClientOptions.GetKucoinRestApiClientOptions(_userCredentials.FutureCredentials),
+                    //LogLevel = _restClientOptions.LogLevel.GetEnum<LogLevel>(),
+                    //OutputOriginalData = _restClientOptions.OutputOriginalData,
+                    //Proxy = _restClientOptions.ApiProxy?.GetApiProxy(),
+                    //RequestTimeout = _restClientOptions.RequestSecondsTimeout.GetSecondsInterval()
                 };
     }
 }

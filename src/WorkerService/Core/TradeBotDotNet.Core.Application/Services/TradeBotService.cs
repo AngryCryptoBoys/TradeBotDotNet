@@ -13,10 +13,10 @@
             IBotStrategy botStrategy,
             CancellationToken cancellationToken = default)
         {
-            await botStrategy.OnInitialAsync(cancellationToken);
             await _clientWrapper.OnOrderUpdateAsync(
                 onOrderUpdate: botStrategy.OnOrderUpdate,
                 cancellationToken: cancellationToken);
+            await botStrategy.OnInitialAsync(cancellationToken);
         }
     }
 }
